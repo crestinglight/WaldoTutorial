@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Where's Waldo Tutorial</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<h1>Where's Waldo Game Tutorial</h1>
+			<p>Welcome to the Where's Waldo coding tutorial, where we're going to discuss the basics of creating a Where's Waldo game that you can play with your friends and family!</p>
+			<br>
+			<img src="images/WaldoBasic.jpg" id="waldoBasic">
+			<br>
+			<h2>Our Basic HTML</h2>
+			<p>For this tutorial, we'll start by going over our basic HTML. HTML provides us with the building blocks we need to get started putting our site together. Surprisingly, we don't need as much as you may think. Here is all of the HTML we'll be working with:
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/cff5f11d3ec4aedc692e46c772f38de7.js"></script>
+			</div>	
+			<p>In the head tag, we're just telling the program what we would like the title of our page to be, and which files we would like connected to this HTML file, the CSS stylesheet, and our Javascript file.</p>
+			<p>Within the body and wrapper divs, we have the label of what level we're on, in this case level 1, and the image we would like the player to search. There are hundreds of Where's Waldo images we can use, so pick one that you like!</p>
+			<p>Finally, our "modal" div will contain the structure we need in order to show the window that will pop up after the user has found Waldo. It will contain the amount of time it took for the user to find Waldo, a short message confirming they found Waldo, and two buttons, "Next Puzzle", and "High Scores". Notice the "high score" modal is exactly the same as the modal content block, just with a few different names.</p>
+			<br>
+			<h2>Time for Some Cascading Style</h2>
+			<p>Now we'll take a look at the CSS file, or Cascading Style Sheet file. This file allows us to format our HTML elements and make them look nice, and stay where we want them to on the page. Take a look through the file below:</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/a1136bac38d1d52aa9667d9487b995f2.js"></script>
+			</div>
+			<p>At first, this file may look a bit intimidating, but don't worry! It's very repetitive. Let's break it down:</p>
+			<pre>
+	body {
+		width: 800px;
+		margin-right: auto;
+		margin-left: auto;
+		background-color: rgb(255, 248, 209);
+		background-image: url("images/WaldoBG.jpg");
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 100%;
+	}
+			</pre>
+			<p>In CSS, each tag targets an HTML element, and styles that element to the specifications in the CSS. So in this example, the width of the HTML element "body" has been set to 800 pixels, the background color has been set to a pale yellow, and the body's alignment has been set to center using the left and right margins. We can apply these principles universally by targeting which element we want (h1, p, a, etc.), and styling the aspects of that tag in the way we want. For more information on CSS and some of the styling options available, check out <a href="https://www.w3schools.com/Css/">this tutorial</a>.</p>
+
+			<h2>Taking Action with Javascript</h2>
+			<p>Javascript is the language we use to make our websites dynamic and interactive. It's quite a bit more complicated than the previous areas of code, so let's break this down into bite-size pieces.</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/dfbae193a2cf2d876eee7e38c87f5611.js"></script>
+			</div>
+			<p>The first step is to put all of our javascript code into this function. All lines of code from here on will be between these brackets. This line of code executes everything inside of it <strong>after</strong> the page has loaded. This will be important because as soon as the user reaches this page, we will be starting a timer that will measure how long it takes for the user to find Waldo. We want the timer to start as soon as the image is loaded, not before, so it is important that we keep everything inside this function.</p>
+			<p>Now we need to make a plan of goals that we want to accomplish with our javascript. What is it that we need to do in order to make our game work correctly? I find it helpful to make a list of all the things I need to do:</p>
+			<ul>
+				<li id="grayout">We will need to set up a server that contains the range of x- and y-coordinates that will register as correct if the user clicks within that range. This server will also need to store all of the high scores from the players who have found Waldo. This will need to be set up in Ruby, so we will do this after we finish the javascript.</li>
+				<li>Start a timer on loading the page.</li>
+				<li>When the user clicks on the image, find the x- and y-coordinates of where they clicked.</li>
+				<li>Send the x- and y-coordinates to the server and let it decide whether they are within the correct range or not.</li>
+				<li>Trigger the modal to become visible when the user finds Waldo.</li>
+				<li>End the timer when the user finds Waldo.</li>
+				<li>Convert the amount of time passed into a readable format so the user can see how much time it took to find Waldo.</li>
+				<li>Save the user's time and send it to the server.</li>
+				<li>Fill the modal with the user's time.</li>
+				<li>When the user clicks the "High Score" button, displays the top ten high scores saved.</li>
+			</ul>
+
+			<p>Let's start with something easy: starting the timer. In order to start the timer, all we need is one line:</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/19a6e30dc14a46daa970d6c2d8636b3b.js"></script>
+			</div>
+			<p>This line will give us the number of milliseconds that have passed since 1/1/1970. How does that help us? Well, when the user finds Waldo and clicks on him, we'll mark the number of milliseconds that have passed again, and subtract the original amount. This will give us the number of milliseconds that have passed since the timer started, which is all we need to know!</p>
+			<p>Now let's get the x- and y-coordinates of where the user clicked:</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/3df3c711cfa0970cb1faf430358c89f3.js"></script>
+			</div>
+			<p>Now is a good time to discuss event listeners. Whenever a user does anything, from clicking, to holding down the arrow keys, even moving the mouse, is an <strong>event</strong>. Therefore, we need to add what are called <em>Event Listeners</em>. Think of these as little ears that are listening for a specific event. They do nothing until the event happens, and when the event happens, they will perform an action that we program them to perform.</p>
+			<p>Lines 5 and 6 above set up an event listener for when the user clicks on the image. When they do, the program will run the "getXY" function, giving us the x- and y-coordinates of where they clicked.</p>
+
+			<p>For now, we'll leave the server-side programming on pause, so let's jump ahead a few steps. For now, let's pretend we've sent the x- and y-coordinates to the server and the server has come back with correct
+
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
