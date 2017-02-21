@@ -76,7 +76,18 @@
 			<p>Now is a good time to discuss event listeners. Whenever a user does anything, from clicking, to holding down the arrow keys, even moving the mouse, is an <strong>event</strong>. Therefore, we need to add what are called <em>Event Listeners</em>. Think of these as little ears that are listening for a specific event. They do nothing until the event happens, and when the event happens, they will perform an action that we program them to perform.</p>
 			<p>Lines 5 and 6 above set up an event listener for when the user clicks on the image. When they do, the program will run the "getXY" function, giving us the x- and y-coordinates of where they clicked.</p>
 
-			<p>For now, we'll leave the server-side programming on pause, so let's jump ahead a few steps. For now, let's pretend we've sent the x- and y-coordinates to the server and the server has come back with correct
+			<p>For now, we'll leave the server-side programming on pause, so let's jump ahead a few steps. For now, let's pretend we've sent the x- and y-coordinates to the server and the server has come back with correct answer. Let's set up our functions for when that happens.</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/72fb0aefe7d65dae0cb6e0b73a97095e.js"></script>
+			</div>
+			<p>When the server responds that the user has the correct answer, we need to stop the timer. This function gives us a variable that contains the total number of milliseconds it took the player to find Waldo. This doesn't mean much to our user, however, so now we need to make it readable. This will be our longest piece of javascript code yet, but it'll all make sense when we break it down:
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/27f61f84bc81f4957ff680e65df0e2d8.js"></script>
+			</div>
+			<p>Let's start with the first function. This function takes in our milliseconds, here called "millis", and will convert break them down into the number of seconds, minutes, hours, and days. Finding hundredths of a second is a little more complicated, so we need another function for that. We're setting our variable "x" equal to our total milliseconds divided by 1000. To find the number of seconds, we use Math.floor, which will round down to the nearest whole number, instead of getting back something like 14.333333356498275492. We would just want the "14" out of that number. We also use the "%" here instead of "/". This is called the modulo symbol, and this symbol gives us the remainder, instead of the division. For example, "5/2" will give us 2.5, whereas "5%2" will give us 1, because 1 is the remainder.<br>
+			We then divide x by 60, and find the minutes by getting the remainder of "x % 60". We continue like this to get our hours and days. Now let's talk about the hundredths function.</p>
+			<p>In order to find the hundreths of a second that are on the timer, we have to do a little more math. We'll do this in the findHundredths function. After dividing the milliseconds by 1000, the decimal point is in the correct spot, i.e. "30.456". All we need to do is convert this to a string, then split that string by the decimal point. This will give us an array of ["30, 456"]. We need the first two numbers from the second string (this is the charAt line of code), and now we have the hundredth of a second!</p>
+			<p>Now we push our hundredths, seconds, minutes, hours, and days into an array. Here's where we call our "timeFormat" function. This will convert all of our numbers into double digits. For example, [45, 6, 3, 0, 0] becomes ["45", "06", "03", "00", "00"]. Now, when we call the "stringItTogether" function, it will use the numbers in the array to a string that is readable to our user! Another example, 0 days, 4 hours, 37 minutes, 2 seconds, and 56 hundredths of a second come out as "00:04:37:02.56".</p>
 
 		</div>
 	</body>
