@@ -13,18 +13,22 @@
 			<p>Welcome to the Where's Waldo coding tutorial, where we're going to discuss the basics of creating a Where's Waldo game that you can play with your friends and family!</p>
 			<br>
 			<img src="images/WaldoBasic.jpg" id="waldoBasic">
+
 			<br>
 			<h2>Our Basic HTML</h2>
-			<p>For this tutorial, we'll start by going over our basic HTML. HTML provides us with the building blocks we need to get started putting our site together. Surprisingly, we don't need as much as you may think. Here is all of the HTML we'll be working with:
+			<p>For this tutorial, we'll start by going over our basic HTML. HTML provides us with the building blocks we need to get started putting our site together. Surprisingly, we don't need as much as you may think. Here is all of the HTML we'll be working with:</p>
 			<div class="sourceCode">
 				<script src="https://gist.github.com/crestinglight/cff5f11d3ec4aedc692e46c772f38de7.js"></script>
-			</div>	
+			</div>
+			<div class="notes">
+				<p>Note: For now, don't worry about the naming convention or folder placement of this file, as we will change it later. Just name the file what you'd like and place it somewhere inside of your project where you will remember it.</p>
+			</div>
 			<p>In the head tag, we're just telling the program what we would like the title of our page to be, and which files we would like connected to this HTML file, the CSS stylesheet, and our Javascript file.</p>
 			<p>Within the body and wrapper divs, we have the label of what level we're on, in this case level 1, and the image we would like the player to search. There are hundreds of Where's Waldo images we can use, so pick one that you like!</p>
 			<p>Finally, our "modal" div will contain the structure we need in order to show the window that will pop up after the user has found Waldo. It will contain the amount of time it took for the user to find Waldo, a short message confirming they found Waldo, and two buttons, "Next Puzzle", and "High Scores". Notice the "high score" modal is exactly the same as the modal content block, just with a few different names.</p>
 			<br>
 			<h2>Time for Some Cascading Style</h2>
-			<p>Now we'll take a look at the CSS file, or Cascading Style Sheet file. This file allows us to format our HTML elements and make them look nice, and stay where we want them to on the page. Take a look through the file below:</p>
+			<p>Now we'll take a look at the CSS file, or Cascading Style Sheet. This file allows us to format our HTML elements and make them look nice, and stay where we want them to on the page. Take a look through the file below:</p>
 			<div class="sourceCode">
 				<script src="https://gist.github.com/crestinglight/a1136bac38d1d52aa9667d9487b995f2.js"></script>
 			</div>
@@ -42,17 +46,20 @@
 		height: 100%;
 	}
 			</pre>
-			<p>In CSS, each tag targets an HTML element, and styles that element to the specifications in the CSS. So in this example, the width of the HTML element "body" has been set to 800 pixels, the background color has been set to a pale yellow, and the body's alignment has been set to center using the left and right margins. We can apply these principles universally by targeting which element we want (h1, p, a, etc.), and styling the aspects of that tag in the way we want. For more information on CSS and some of the styling options available, check out <a href="https://www.w3schools.com/Css/">this tutorial</a>.</p>
+			<p>In CSS, each tag targets an HTML element, and styles that element to the specifications in the CSS. So in this example, the width of the HTML element "body" has been set to 800 pixels, the background color has been set to a pale yellow, and the body's alignment is centered, using the "margin-left: auto" and "margin-right: auto" lines. We can apply these principles universally by targeting whatevera element we want (h1, p, a, etc.), and styling the aspects of that tag in the way we want. We can even create custom style-types easily by entering div tags in our HTML file with a custom class name, then targeting that class with our CSS in this format: "<em>.class-name { styles }</em>". Feel free to play around with these different tags, options, colors, and styles to create your own unique page!</p>
 
+			<div class="notes"><p>Note: For more information on CSS and some of the styling options available, check out <a href="https://www.w3schools.com/Css/">this tutorial</a>.</p></div>
+
+			<br>
 			<h2>Taking Action with Javascript</h2>
-			<p>Javascript is the language we use to make our websites dynamic and interactive. It's quite a bit more complicated than the previous areas of code, so let's break this down into bite-size pieces.</p>
+			<p>Javascript is the language we use to make our websites dynamic and interactive. It's quite a bit more complicated than the previous areas of code, so we'll take it slow and break it down into bite-size pieces.</p>
 			<div class="sourceCode">
 				<script src="https://gist.github.com/crestinglight/dfbae193a2cf2d876eee7e38c87f5611.js"></script>
 			</div>
-			<p>The first step is to put all of our javascript code into this function. All lines of code from here on will be between these brackets. This line of code executes everything inside of it <strong>after</strong> the page has loaded. This will be important because as soon as the user reaches this page, we will be starting a timer that will measure how long it takes for the user to find Waldo. We want the timer to start as soon as the image is loaded, not before, so it is important that we keep everything inside this function.</p>
+			<p>The first step is to put all of our javascript code into this function. All lines of code from here on will be between these brackets. This line of code executes everything inside of it <strong>after</strong> the page has loaded. This will be important because as soon as the user reaches this page, we will be starting a timer that will measure how long it takes for them to find Waldo. We want the timer to start as soon as the image is loaded, not before, so it is important that we keep everything inside this function.</p>
 			<p>Now we need to make a plan of goals that we want to accomplish with our javascript. What is it that we need to do in order to make our game work correctly? I find it helpful to make a list of all the things I need to do:</p>
 			<ul>
-				<li id="grayout">We will need to set up a server that contains the range of x- and y-coordinates that will register as correct if the user clicks within that range. This server will also need to store all of the high scores from the players who have found Waldo. This will need to be set up in Ruby, so we will do this after we finish the javascript.</li>
+				<li id="grayout">We will need to set up a server containing the range of x- and y-coordinates that will register as correct if the user clicks within that range. This server will also need to store all of the high scores from the players who have found Waldo. This will need to be set up in Ruby, so we will do this after we finish the javascript.</li>
 				<li>Start a timer on loading the page.</li>
 				<li>When the user clicks on the image, find the x- and y-coordinates of where they clicked.</li>
 				<li>Send the x- and y-coordinates to the server and let it decide whether they are within the correct range or not.</li>
@@ -73,22 +80,110 @@
 			<div class="sourceCode">
 				<script src="https://gist.github.com/crestinglight/3df3c711cfa0970cb1faf430358c89f3.js"></script>
 			</div>
-			<p>Now is a good time to discuss event listeners. Whenever a user does anything, from clicking, to holding down the arrow keys, even moving the mouse, is an <strong>event</strong>. Therefore, we need to add what are called <em>Event Listeners</em>. Think of these as little ears that are listening for a specific event. They do nothing until the event happens, and when the event happens, they will perform an action that we program them to perform.</p>
+			<p>Now is a good time to discuss <strong>event listeners</strong>. Whenever a user does anything, from clicking, to holding down the arrow keys, even moving the mouse, is an <strong>event</strong>. Therefore, we need to add what are called <em>Event Listeners</em>. Think of these as little ears that are listening for a specific event. They do nothing until the event happens, and when the event happens, they will perform a particular action.</p>
 			<p>Lines 5 and 6 above set up an event listener for when the user clicks on the image. When they do, the program will run the "getXY" function, giving us the x- and y-coordinates of where they clicked.</p>
+			<p>Note that we use "e" here as a representative for the "event". In this snippet of code, "e.offsetX" is a pre-programmed variable within JavaScript that represents the x-coordinate of the element the user clicked on. This is important, because we don't want the x-coordinate of where they clicked on the <em>screen</em>, but rather where they clicked on the <em>image</em>.</p>
 
-			<p>For now, we'll leave the server-side programming on pause, so let's jump ahead a few steps. For now, let's pretend we've sent the x- and y-coordinates to the server and the server has come back with correct answer. Let's set up our functions for when that happens.</p>
+			<p>For now, we'll leave the server-side programming on pause, so let's jump ahead a few steps. Let's pretend we've sent the x- and y-coordinates to the server, and the server has come back with a "correct answer" response. We can set up our functions for when that happens.</p>
 			<div class="sourceCode">
 				<script src="https://gist.github.com/crestinglight/72fb0aefe7d65dae0cb6e0b73a97095e.js"></script>
 			</div>
-			<p>When the server responds that the user has the correct answer, we need to stop the timer. This function gives us a variable that contains the total number of milliseconds it took the player to find Waldo. This doesn't mean much to our user, however, so now we need to make it readable. This will be our longest piece of javascript code yet, but it'll all make sense when we break it down:
+			<p>When the server responds that the user has the correct answer, the first thing we need to do is stop the timer. This function gives us a variable that contains the total number of milliseconds it took the player to find Waldo. This doesn't mean much to our user, however, so now we need to make it readable. This will be our longest piece of javascript code yet, but it'll all make sense when we break it down:
 			<div class="sourceCode">
 				<script src="https://gist.github.com/crestinglight/27f61f84bc81f4957ff680e65df0e2d8.js"></script>
 			</div>
-			<p>Let's start with the first function. This function takes in our milliseconds, here called "millis", and will convert break them down into the number of seconds, minutes, hours, and days. Finding hundredths of a second is a little more complicated, so we need another function for that. We're setting our variable "x" equal to our total milliseconds divided by 1000. To find the number of seconds, we use Math.floor, which will round down to the nearest whole number, instead of getting back something like 14.333333356498275492. We would just want the "14" out of that number. We also use the "%" here instead of "/". This is called the modulo symbol, and this symbol gives us the remainder, instead of the division. For example, "5/2" will give us 2.5, whereas "5%2" will give us 1, because 1 is the remainder.<br>
-			We then divide x by 60, and find the minutes by getting the remainder of "x % 60". We continue like this to get our hours and days. Now let's talk about the hundredths function.</p>
-			<p>In order to find the hundreths of a second that are on the timer, we have to do a little more math. We'll do this in the findHundredths function. After dividing the milliseconds by 1000, the decimal point is in the correct spot, i.e. "30.456". All we need to do is convert this to a string, then split that string by the decimal point. This will give us an array of ["30, 456"]. We need the first two numbers from the second string (this is the charAt line of code), and now we have the hundredth of a second!</p>
-			<p>Now we push our hundredths, seconds, minutes, hours, and days into an array. Here's where we call our "timeFormat" function. This will convert all of our numbers into double digits. For example, [45, 6, 3, 0, 0] becomes ["45", "06", "03", "00", "00"]. Now, when we call the "stringItTogether" function, it will use the numbers in the array to a string that is readable to our user! Another example, 0 days, 4 hours, 37 minutes, 2 seconds, and 56 hundredths of a second come out as "00:04:37:02.56".</p>
+			<p>Let's start with the first function. This function takes in our milliseconds, here called "millis", and will break them down into the number of seconds, minutes, hours, and days. Finding hundredths of a second is a little more complicated, so we need another function for that. We're setting our variable "x" equal to our total milliseconds divided by 1000. To find the number of seconds, we use Math.floor, which will round down to the nearest whole number, instead of getting back something like 14.333333356498275492. We would just want the "14" out of that number.</p>
+			<p>We also use the "%" here instead of "/". This is called the modulo symbol, and this symbol gives us the remainder, instead of the division. For example, "5/2" will give us 2.5, whereas "5%2" will give us 1, because 1 is the remainder.</p>
+			<p>We then divide x by 60, and find the minutes by getting the remainder of "x % 60". We continue like this to get our hours and days. Now let's talk about the hundredths function.</p>
+			<p>In order to find the hundreths of a second that are on the timer, we have to do a little more math. We'll do this in the findHundredths function. After dividing the milliseconds by 1000, the decimal point is in the correct spot, i.e. "30.456". All we need to do is convert this to a string, then split that string by the decimal point. This will give us an array of ["30", "456"]. We need the first two numbers from the second string (this is the charAt line of code), and now we have the hundredth of a second!</p>
+			<p>Finally, we push our hundredths, seconds, minutes, hours, and days into an array. Here's where we call our "timeFormat" function. Notice that the numbers we currently have are the lowest number of digits possible. As humans, we like to read time in double digits. 4 hours are typically read as "04 hours", like on a digital clock. This function will convert all of our numbers into double digits.</p>
+			<p class="exampleDigits">Example: 3 minutes, 6 seconds, and 45 hundredths of a second would come in to the function as [45, 6, 3, 0, 0], and becomes ["45", "06", "03", "00", "00"] after the function has executed.</p>
+			<p>Now, when we call the "stringItTogether" function, it will use the numbers in the array to a string that is readable to our user!</p>
+			<p class="exampleDigits">Another example: 0 days, 4 hours, 37 minutes, 2 seconds, and 56 hundredths of a second will come out as "00:04:37:02.56".</p>
+			<p>Now that we have our timer string, we can use it to fill in our modal!</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/5a52cbd9e76e5f98f05e804a08638de1.js"></script>
+			</div>
+			<p>If you take a quick look back in our HTML, we set ourselves up for success by creating that modal content block. Within that tag, we also have a "modalTimer" tag, which we can use to input our timer string, and our modal will do all the heavy lifting for us. So, all we need to do is target that tag, as we do in line 2, then fill the innerHTML with that high score string. Our CSS will style the font, size, color, etc. the way we want, and we can move on to displaying the modal.</p>
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/6a64ae2ce3735904d1615b2238b1d6d7.js"></script>
+			</div>
+			<p>When we look back in our HTML again, we'll see that the display of the modal blocks have been set to "none" as default. All we need to do to make our modal "appear", is to set the display to "block". This will place our modal over top of our page, <em>(Note the style "z-index" in the CSS style sheet, which indicates the order from front to back of each tag.)</em>, and make it visible for the user to interact with.</p>
+			<p>Now let's have some fun with server-side code!</p>
 
+			<br>
+			<h2>Creating a Gem of a Server</h2>
+			<p>For this part of the tutorial, I'll have to assume that you have both <a href="https://www.ruby-lang.org/en/">Ruby</a> and <a href="http://www.sinatrarb.com/">Sinatra</a> installed on your computer. If you do not currently have these installed, head over <a href="https://www.ruby-lang.org/en/documentation/installation/">here</a> for help installing Ruby, and <a href="https://www.sitepoint.com/premium/books/jump-start-sinatra/online/ch01s02">here</a> to install Sinatra.</p>
+
+
+			<p>There are a few things that we need to do before we start coding in Sinatra. Sinatra has a very particular folder and file structure that we must adhere to for our site to work, so let's set that up now. Your folder structure should be set up like this:</p>
+
+			<div class="folderStructure">
+				<pre>
+	<img src="images/foldericon.png"> Waldo
+	  <img src="images/arrow.png"> <img src="images/foldericon.png"> public
+	      <img src="images/arrow.png"> <img src="images/foldericon.png"> images
+	  <img src="images/arrow.png"> <img src="images/foldericon.png"> views</pre>
+			</div>
+
+			<p>Our Ruby files will go in the general "Waldo" folder, while our helper files such as our CSS stylesheet, JavaScript files, and images folder will go into the "public" folder. Our "views" folder will contain our individual page files, like the home page and Waldo game pages. Keep in mind that we must adhere to this folder structure exactly, because these are the paths that Sinatra will automatically look in for each file type. If that folder does not exist, or if the file is in the wrong folder, we will get an error message and our site will not run properly.</p>
+
+			<p>Now, we are going to build our server with Sinatra. Lucky for us, Sinatra makes this very simple! Create a new ruby file (<em>file-name.rb</em>) inside of your general "Waldo" folder. Here, I call my file "webController", but you may use any naming convention that makes sense to you. Inside of that file, write the following few lines of code:</p>
+
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/8275c4dc54c2a4d68fce5098d858d4d7.js"></script>
+			</div>
+
+			<p>Remember that HTML file that we started with? We'll need to modify it very slightly to get it to work in Sinatra. Sinatra does not deal with simple <em>.html</em> files, it prefers to use <em>.erb</em> files, which is short for the "embedded ruby" file type. This essentially means that we can use ruby code inside of HTML files. For now, we'll stick with HTML only in our <em>.erb</em> file, but it's nice to know that it has greater capabilities than that.</p>
+			<p>Wherever you created your original HTML file, make a copy of it and place that copy into your "views" folder, and we'll need to rename it to "index.erb". This way, Sinatra will be able to identify it as our index HTML file.</p>
+
+			<br>
+			<h2>Testing, Testing</h2>
+			<p>At this point, we want to test that our Sinatra server is working. In your command line, get inside of your general "Waldo" folder, and type in this line of code: "ruby webController.rb", or if you named your ruby file something else, you'll need to use that name instead. You should see several lines of code that start with a time stamp, and "INFO", then some more code.</p>
+
+			<div class="screenshot">
+				<img src="images/Screenshot02.png" id="terminal">
+			</div>
+
+			<div class="notes">
+				<p>Note: Your server is running from your computer at this point, and it does not refresh itself when you make changes to your files. To close the server, press Ctrl+C inside your terminal. If you'd like to restart the server and view any changes you've made, close the server and restart it by running your "ruby webController" command again. You will need to refresh your browser to see any changes.</p>
+			</div>
+
+			<p>This means your server is currently running, and we can check out our website by opening our browser of choice and typing "localhost:4567" into the URL. You should see your website up-and-running!</p>
+
+			<div class="screenshot">
+				<img src="images/Screenshot01.png">
+			</div>
+
+			<p>Though our website is visible at this point, you'll notice that our game doesn't actually work. This is because we are missing three major functions:</p>
+
+			<ul>
+				<li>We need to ask the server if the recorded x- and y-coordinates that the user clicked on are correct. Have they found Waldo?</li>
+				<li>We need to keep a list of our high scores in a place where the server can access them.</li>
+				<li>If the user has found Waldo, their time must be recorded along with all of the other scores that other players have made.</li>
+			</ul>
+
+			<p>After finishing these up, we will have a working game!</p>
+
+			<br>
+			<h2>A Coordinated Effort</h2>
+			<p>As of now, we have no way of verifying whether the x- and y-coordinates that are sent to the server are correct. In order to solve this issue, we'll need to write a few simple functions in Ruby. We'll want to create a new ruby file within our general "Waldo" folder, and name it what you'd like. Here, I call mine "csvMaker.rb".</p>
+			<p>After we've made our file, we need to find out the range of x- and y-coordinates that are acceptable for the user to click on to be considered a "hit" for Waldo. This can be done in many ways. There are websites that will show you the x- and y-coordinates of where you click on an uploaded image, or you can simply <span class="inlineCode">console.log(e.offsetX + "," + e.offsetY);</span> and click on the corners of Waldo to find the range of acceptable coordinates. In the case of this image, the range of acceptable x-coordinates are 380 - 419, and y-coordinates are 262-302.</p>
+			<p>Now that we know the acceptable coordinate range, we can build our validation function in ruby. In your "csvMaker.rb" file, enter the following code:</p>
+
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/064d10fa771e6b9752ae3586aae27e92.js"></script>
+			</div>
+
+			<p>This simply means that if the coordinates received are within range, return "true". If not, return "false". Nice and simple!</p>
+			<p>However, we're not done with this step yet. We've set up a validation function, but how do we actually pass our x- and y-coordinates into that function and get the answer back? Let's start with the JavaScript.</p>
+			<p>Earlier, we talked about how to get the x- and y-coordinates in JS, but we skipped ahead before sending them to the server. In our JS file, we'll need to modify our "getXY" function in order to call a new "sendInfoToServer" function. I've commented the next bit of code line-by-line as it gets a bit complicated:</p>
+
+			<div class="sourceCode">
+				<script src="https://gist.github.com/crestinglight/78eeffd56b38ce74e1ae282569eb1122.js"></script>
+			</div>
+
+			<p>XMLHttpRequest is a function that is built into JS, which allows us to send and recieve information to and from a server. For an in-depth tutorial on how this works, check out <a href="https://youtu.be/rJesac0_Ftw">this video</a>. For now, all we need to know is that we are sending our coordinates to our Sinatra controller through something called a <strong>query string</strong>. A query string comes through to the server like this: <span class="inlineCode">http://localhost:4567/puzzle01validate?xPos=394&yPos=280</span>. 
 		</div>
 	</body>
 </html>
